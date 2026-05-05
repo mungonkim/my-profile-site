@@ -13,10 +13,20 @@ const DEFAULT_DATA = {
             '다양한 프로젝트 경험을 통해 문제 해결 능력과 팀 협업 능력을 갖추었습니다. 함께 멋진 무언가를 만들 수 있는 팀을 찾고 있습니다.'
         ]
     },
-    skills: {
-        frontend: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Tailwind CSS', 'Vue.js'],
-        backend: ['Node.js', 'Express.js', 'MongoDB', 'Python', 'Git', 'REST API']
-    },
+    skills: [
+        {
+            category: 'Frontend Development',
+            skills: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Tailwind CSS', 'Vue.js']
+        },
+        {
+            category: 'Backend Development',
+            skills: ['Node.js', 'Express.js', 'MongoDB', 'Python', 'REST API']
+        },
+        {
+            category: 'Tools & Others',
+            skills: ['Git', 'GitHub', 'Figma', 'VS Code', 'Responsive Design']
+        }
+    ],
     projects: [
         {
             title: '포트폴리오 웹사이트',
@@ -48,7 +58,7 @@ const DEFAULT_DATA = {
     }
 };
 
-// ── 렌더링 ────────────────────────────────────────────────────
+// ── 렌더링 ────────────────────────────────────────────────
 function renderPage(data) {
     // Hero
     document.getElementById('hero-greeting').textContent = data.hero.greeting;
@@ -61,9 +71,8 @@ function renderPage(data) {
     document.getElementById('about-p2').textContent = data.about.paragraphs[1];
     document.getElementById('about-p3').textContent = data.about.paragraphs[2];
 
-    // Skills
-    renderSkills(data.skills.frontend, 'skills-frontend');
-    renderSkills(data.skills.backend, 'skills-backend');
+    // Skills (new card layout)
+    renderSkills(data.skills);
 
     // Projects
     renderProjects(data.projects);
@@ -92,14 +101,25 @@ const PROJECT_ICONS = [
     '<path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 115.5 17zM7 9.5a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd">'
 ];
 
-function renderSkills(list, containerId) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-    list.forEach(skill => {
-        const span = document.createElement('span');
-        span.className = 'skill-tag bg-purple-100 text-purple-900 px-4 py-2 rounded-full font-medium';
-        span.textContent = skill;
-        container.appendChild(span);
+function renderSkills(skillsList) {
+    const grid = document.getElementById('skills-grid');
+    grid.innerHTML = '';
+    skillsList.forEach(skillGroup => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition';
+
+        const skillsText = skillGroup.skills.join(', ');
+
+        card.innerHTML = `
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm0 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">${escHtml(skillGroup.category)}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">${escHtml(skillsText)}</p>
+        `;
+        grid.appendChild(card);
     });
 }
 
@@ -109,22 +129,22 @@ function renderProjects(projects) {
     projects.forEach((proj, idx) => {
         const iconPath = PROJECT_ICONS[idx % PROJECT_ICONS.length];
         const tagsHtml = proj.tags.map(t =>
-            `<span class="text-sm bg-purple-100 text-purple-900 px-3 py-1 rounded-full">${escHtml(t)}</span>`
+            `<span class="text-xs bg-purple-100 text-purple-900 px-3 py-1 rounded-full font-medium">${escHtml(t)}</span>`
         ).join('');
 
         const card = document.createElement('div');
-        card.className = 'project-card bg-white rounded-lg overflow-hidden border border-gray-200 shadow-xl';
+        card.className = 'project-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition';
         card.innerHTML = `
             <div class="bg-gradient-to-br ${escHtml(proj.gradient)} h-48 flex items-center justify-center">
-                <svg class="w-24 h-24 text-white opacity-50" fill="currentColor" viewBox="0 0 20 20">
+                <svg class="w-20 h-20 text-white opacity-40" fill="currentColor" viewBox="0 0 20 20">
                     ${iconPath}
                 </svg>
             </div>
             <div class="p-6">
-                <h3 class="text-xl font-bold text-gray-900 mb-2">${escHtml(proj.title)}</h3>
-                <p class="text-gray-600 mb-4">${escHtml(proj.description)}</p>
                 <div class="flex flex-wrap gap-2 mb-4">${tagsHtml}</div>
-                <a href="${escHtml(proj.link)}" class="inline-block text-purple-500 font-semibold hover:text-purple-600 transition">더 보기 →</a>
+                <h3 class="text-lg font-bold text-gray-900 mb-2">${escHtml(proj.title)}</h3>
+                <p class="text-gray-600 text-sm mb-4">${escHtml(proj.description)}</p>
+                <a href="${escHtml(proj.link)}" class="inline-block text-purple-500 font-semibold text-sm hover:text-purple-600 transition">View Project →</a>
             </div>`;
         grid.appendChild(card);
     });

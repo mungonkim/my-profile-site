@@ -31,8 +31,8 @@ html {
 }
 
 .project-card:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -12px rgba(168, 85, 247, 0.2);
 }
 
 .skill-tag {
