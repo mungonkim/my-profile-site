@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile - Web Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="bg-gray-900 text-white">
+
+    <!-- 편집 툴바 (편집 모드에서만 표시) -->
+    <div id="edit-toolbar" class="hidden">
+        <span>✏️ 편집 모드</span>
+        <button id="btn-save">저장</button>
+        <button id="btn-cancel">취소</button>
+        <button id="btn-reset">초기화</button>
+        <button id="btn-pw">비밀번호 변경</button>
+    </div>
+
     <!-- Header/Navigation -->
     <header class="fixed w-full top-0 z-50 bg-gray-800 shadow-lg">
         <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-start items-center">
@@ -54,11 +64,9 @@
                 </div>
             </div>
 
-            <h1 class="text-6xl md:text-7xl font-bold mb-4">안녕하세요!</h1>
-            <h2 class="text-4xl md:text-5xl font-semibold mb-6 text-blue-100">풀스택 개발자입니다</h2>
-            <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                모던하고 사용자 중심의 웹 애플리케이션을 만드는 것을 좋아합니다. React, Node.js, 그리고 다양한 최신 기술들을 활용하여 매력적인 디지털 경험을 창출합니다.
-            </p>
+            <h1 id="hero-greeting" class="text-6xl md:text-7xl font-bold mb-4" data-editable></h1>
+            <h2 id="hero-subtitle" class="text-4xl md:text-5xl font-semibold mb-6 text-blue-100" data-editable></h2>
+            <p id="hero-bio" class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto" data-editable></p>
 
             <div class="flex gap-8 justify-center flex-wrap">
                 <a href="#projects" class="bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition shadow-lg">
@@ -86,16 +94,10 @@
                 </div>
 
                 <div>
-                    <h3 class="text-2xl font-bold text-white mb-4">저에 대해서</h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        저는 웹 개발에 열정적인 풀스택 개발자입니다. 프론트엔드에서는 React와 Tailwind CSS를 사용하여 매력적인 UI를 만들고, 백엔드에서는 Node.js와 데이터베이스를 활용하여 견고한 서비스를 구축합니다.
-                    </p>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        사용자 경험을 최우선으로 생각하며, 깔끔하고 효율적인 코드 작성을 중요하게 여깁니다. 새로운 기술을 배우고 도전하는 것을 즐기며, 지속적으로 성장하고자 합니다.
-                    </p>
-                    <p class="text-gray-400 leading-relaxed">
-                        다양한 프로젝트 경험을 통해 문제 해결 능력과 팀 협업 능력을 갖추었습니다. 함께 멋진 무언가를 만들 수 있는 팀을 찾고 있습니다.
-                    </p>
+                    <h3 id="about-heading" class="text-2xl font-bold text-white mb-4" data-editable></h3>
+                    <p id="about-p1" class="text-gray-400 mb-4 leading-relaxed" data-editable></p>
+                    <p id="about-p2" class="text-gray-400 mb-4 leading-relaxed" data-editable></p>
+                    <p id="about-p3" class="text-gray-400 leading-relaxed" data-editable></p>
                 </div>
             </div>
         </div>
@@ -112,29 +114,15 @@
                         <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
                         프론트엔드
                     </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">HTML5</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">CSS3</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">JavaScript</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">React</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">Tailwind CSS</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">Vue.js</span>
-                    </div>
+                    <div id="skills-frontend" class="flex flex-wrap gap-3"></div>
                 </div>
 
                 <div>
                     <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
                         <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                        백엔드 & 기타
+                        백엔드 &amp; 기타
                     </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">Node.js</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">Express.js</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">MongoDB</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">Python</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">Git</span>
-                        <span class="skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium">REST API</span>
-                    </div>
+                    <div id="skills-backend" class="flex flex-wrap gap-3"></div>
                 </div>
             </div>
         </div>
@@ -144,78 +132,7 @@
     <section id="projects" class="section py-20 px-4 bg-gray-800">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold text-center mb-12 text-white">프로젝트</h2>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-gray-700 rounded-lg overflow-hidden border border-gray-600 shadow-xl">
-                    <div class="bg-gradient-to-br from-blue-400 to-blue-600 h-48 flex items-center justify-center">
-                        <svg class="w-24 h-24 text-white opacity-50" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm0 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2z"></path>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">포트폴리오 웹사이트</h3>
-                        <p class="text-gray-400 mb-4">
-                            반응형 포트폴리오 웹사이트입니다. HTML, CSS, JavaScript를 사용하여 모던하고 깔끔한 디자인으로 제작했습니다.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">HTML</span>
-                            <span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">CSS</span>
-                            <span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">JavaScript</span>
-                        </div>
-                        <a href="#" class="inline-block text-orange-400 font-semibold hover:text-orange-300 transition">
-                            더 보기 →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card bg-gray-700 rounded-lg overflow-hidden border border-gray-600 shadow-xl">
-                    <div class="bg-gradient-to-br from-purple-400 to-purple-600 h-48 flex items-center justify-center">
-                        <svg class="w-24 h-24 text-white opacity-50" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 1 1 0 000-2 4 4 0 00-4 4v10a4 4 0 004 4h12a4 4 0 004-4V5a4 4 0 00-4-4 1 1 0 000 2 2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">할일 관리 앱</h3>
-                        <p class="text-gray-400 mb-4">
-                            React와 Node.js를 사용한 할일 관리 애플리케이션입니다. 실시간 데이터 동기화 및 사용자 인증 기능을 포함합니다.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">React</span>
-                            <span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">Node.js</span>
-                            <span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">MongoDB</span>
-                        </div>
-                        <a href="#" class="inline-block text-orange-400 font-semibold hover:text-orange-300 transition">
-                            더 보기 →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card bg-gray-700 rounded-lg overflow-hidden border border-gray-600 shadow-xl">
-                    <div class="bg-gradient-to-br from-green-400 to-green-600 h-48 flex items-center justify-center">
-                        <svg class="w-24 h-24 text-white opacity-50" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 115.5 17zM7 9.5a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">날씨 앱</h3>
-                        <p class="text-gray-400 mb-4">
-                            React로 개발한 날씨 정보 애플리케이션입니다. 외부 API를 활용하여 실시간 날씨 데이터를 제공합니다.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">React</span>
-                            <span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">Axios</span>
-                            <span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">API</span>
-                        </div>
-                        <a href="#" class="inline-block text-orange-400 font-semibold hover:text-orange-300 transition">
-                            더 보기 →
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <div id="projects-grid" class="grid md:grid-cols-3 gap-8"></div>
         </div>
     </section>
 
@@ -223,9 +140,7 @@
     <section id="contact" class="section py-20 px-4 bg-gray-800">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl font-bold mb-8 text-white">연락처</h2>
-            <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-                새로운 프로젝트에 참여하거나 협업할 기회가 있다면 언제든지 연락 주세요!
-            </p>
+            <p id="contact-tagline" class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto" data-editable></p>
 
             <div class="bg-gray-700 rounded-lg shadow-xl p-8 border-t-4 border-orange-500 mb-8">
                 <div class="grid md:grid-cols-3 gap-8 mb-8">
@@ -235,9 +150,7 @@
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                         </svg>
                         <h3 class="font-semibold text-white mb-2">이메일</h3>
-                        <a href="mailto:kmkmk94430228@gmail.com" class="text-orange-400 hover:text-orange-300 transition">
-                            kmkmk94430228@gmail.com
-                        </a>
+                        <a id="contact-email" href="#" class="text-orange-400 hover:text-orange-300 transition" data-editable></a>
                     </div>
 
                     <div>
@@ -245,9 +158,7 @@
                             <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                         </svg>
                         <h3 class="font-semibold text-white mb-2">GitHub</h3>
-                        <a href="https://github.com" target="_blank" class="text-orange-400 hover:text-orange-300 transition">
-                            github.com/yourname
-                        </a>
+                        <a id="contact-github" href="#" target="_blank" class="text-orange-400 hover:text-orange-300 transition" data-editable></a>
                     </div>
 
                     <div>
@@ -255,14 +166,12 @@
                             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                         </svg>
                         <h3 class="font-semibold text-white mb-2">LinkedIn</h3>
-                        <a href="https://linkedin.com" target="_blank" class="text-orange-400 hover:text-orange-300 transition">
-                            linkedin.com/in/yourname
-                        </a>
+                        <a id="contact-linkedin" href="#" target="_blank" class="text-orange-400 hover:text-orange-300 transition" data-editable></a>
                     </div>
                 </div>
 
                 <div class="pt-8 border-t border-gray-600">
-                    <a href="mailto:kmkmk94430228@gmail.com" class="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition">
+                    <a id="contact-email-btn" href="#" class="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition">
                         이메일 보내기
                     </a>
                 </div>
@@ -283,6 +192,70 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- 플로팅 편집 버튼 -->
+    <button id="edit-fab">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+        </svg>
+        편집
+    </button>
+
+    <!-- 비밀번호 모달 -->
+    <div id="pw-modal" class="modal-overlay hidden">
+        <div class="modal-box" style="max-width:360px">
+            <h3 id="pw-modal-title">편집 모드 비밀번호</h3>
+            <label for="pw-input">비밀번호</label>
+            <input type="password" id="pw-input" placeholder="비밀번호를 입력하세요" autocomplete="off">
+            <p id="pw-error" class="text-red-400 text-sm mt-2 hidden">비밀번호가 틀렸습니다.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="pw-cancel">취소</button>
+                <button class="btn-primary" id="pw-confirm">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 비밀번호 변경 모달 -->
+    <div id="change-pw-modal" class="modal-overlay hidden">
+        <div class="modal-box" style="max-width:360px">
+            <h3>비밀번호 변경</h3>
+            <label for="pw-current">현재 비밀번호</label>
+            <input type="password" id="pw-current" placeholder="현재 비밀번호">
+            <label for="pw-new">새 비밀번호</label>
+            <input type="password" id="pw-new" placeholder="새 비밀번호">
+            <label for="pw-confirm2">새 비밀번호 확인</label>
+            <input type="password" id="pw-confirm2" placeholder="새 비밀번호 확인">
+            <p id="pw-change-error" class="text-red-400 text-sm mt-2 hidden"></p>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="change-pw-cancel">취소</button>
+                <button class="btn-primary" id="change-pw-confirm">변경</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 프로젝트 편집 모달 -->
+    <div id="project-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <h3>프로젝트 편집</h3>
+            <label for="proj-title">제목</label>
+            <input type="text" id="proj-title" placeholder="프로젝트 이름">
+            <label for="proj-desc">설명</label>
+            <textarea id="proj-desc" placeholder="프로젝트 설명"></textarea>
+            <label>태그</label>
+            <div id="proj-tags" class="modal-tag-list"></div>
+            <div class="tag-input-wrap" style="margin-top:8px">
+                <input type="text" id="proj-tag-input" placeholder="태그 추가">
+                <button id="proj-tag-add">추가</button>
+            </div>
+            <label for="proj-link">링크 URL</label>
+            <input type="text" id="proj-link" placeholder="https://...">
+            <div class="modal-actions">
+                <button class="btn-secondary" id="proj-cancel">취소</button>
+                <button class="btn-primary" id="proj-save">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

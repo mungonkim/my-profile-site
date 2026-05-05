@@ -1,0 +1,335 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(to right, #f97316, #fb923c);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.3);
+}
+
+.skill-tag {
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+    background-color: #b45309;
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+}
+
+.section {
+    scroll-margin-top: 80px;
+}
+
+/* ── 편집 모드 ── */
+
+.edit-mode [data-editable] {
+    outline: 2px dashed #f97316;
+    outline-offset: 3px;
+    border-radius: 4px;
+    cursor: text;
+    min-width: 40px;
+    min-height: 1em;
+    transition: background 0.2s;
+}
+
+.edit-mode [data-editable]:hover,
+.edit-mode [data-editable]:focus {
+    background: rgba(249, 115, 22, 0.08);
+    outline-color: #fb923c;
+}
+
+.edit-mode [data-editable]:focus {
+    outline-style: solid;
+}
+
+/* 편집 툴바 */
+#edit-toolbar {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    background: #1c1917;
+    border-bottom: 2px solid #f97316;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    flex-wrap: wrap;
+}
+
+#edit-toolbar span {
+    color: #fb923c;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+#edit-toolbar button {
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+}
+
+#edit-toolbar button:hover { opacity: 0.85; }
+
+#btn-save    { background: #f97316; color: #fff; }
+#btn-cancel  { background: #374151; color: #d1d5db; }
+#btn-reset   { background: #7f1d1d; color: #fca5a5; }
+#btn-pw      { background: #1e3a5f; color: #93c5fd; margin-left: auto; }
+
+/* 플로팅 편집 버튼 */
+#edit-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 50;
+    background: #f97316;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#edit-fab:hover { background: #ea6c0a; transform: scale(1.05); }
+
+/* 모달 공통 */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.modal-overlay.hidden { display: none; }
+
+.modal-box {
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 12px;
+    padding: 28px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-box h3 {
+    color: #f9fafb;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.modal-box label {
+    display: block;
+    color: #9ca3af;
+    font-size: 13px;
+    margin-bottom: 4px;
+    margin-top: 14px;
+}
+
+.modal-box input,
+.modal-box textarea {
+    width: 100%;
+    background: #374151;
+    border: 1px solid #4b5563;
+    border-radius: 6px;
+    color: #f9fafb;
+    padding: 8px 12px;
+    font-size: 14px;
+    outline: none;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.modal-box input:focus,
+.modal-box textarea:focus {
+    border-color: #f97316;
+}
+
+.modal-box textarea { min-height: 80px; }
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.modal-actions button {
+    padding: 8px 20px;
+    border-radius: 7px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary { background: #f97316; color: #fff; }
+.btn-secondary { background: #374151; color: #d1d5db; }
+
+/* 스킬 태그 편집 */
+.tag-delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+    color: #fde68a;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 4px;
+    border: none;
+    line-height: 1;
+    transition: background 0.15s;
+}
+
+.tag-delete:hover { background: #7f1d1d; color: #fca5a5; }
+
+.tag-add-btn {
+    background: transparent;
+    border: 2px dashed #f97316;
+    color: #f97316;
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.tag-add-btn:hover { background: rgba(249,115,22,0.1); }
+
+.tag-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.tag-input-wrap input {
+    background: #374151;
+    border: 1px solid #f97316;
+    border-radius: 50px;
+    color: #f9fafb;
+    padding: 5px 12px;
+    font-size: 13px;
+    outline: none;
+    width: 120px;
+}
+
+.tag-input-wrap button {
+    background: #f97316;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 5px 12px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* 프로젝트 카드 편집 버튼 */
+.project-edit-btn {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px;
+    background: transparent;
+    border: 1px solid #4b5563;
+    border-radius: 6px;
+    color: #9ca3af;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.project-edit-btn:hover {
+    border-color: #f97316;
+    color: #f97316;
+    background: rgba(249,115,22,0.05);
+}
+
+/* 모달 내 태그 */
+.modal-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+    min-height: 32px;
+}
+
+.modal-tag {
+    background: #7c2d12;
+    color: #fed7aa;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.modal-tag button {
+    background: none;
+    border: none;
+    color: #fca5a5;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0;
+    line-height: 1;
+}
+
+.edit-mode .section { scroll-margin-top: 120px; }
