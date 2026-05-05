@@ -97,7 +97,7 @@ function renderSkills(list, containerId) {
     container.innerHTML = '';
     list.forEach(skill => {
         const span = document.createElement('span');
-        span.className = 'skill-tag bg-orange-900 text-orange-200 px-4 py-2 rounded-full font-medium';
+        span.className = 'skill-tag bg-purple-100 text-purple-900 px-4 py-2 rounded-full font-medium';
         span.textContent = skill;
         container.appendChild(span);
     });
@@ -109,11 +109,11 @@ function renderProjects(projects) {
     projects.forEach((proj, idx) => {
         const iconPath = PROJECT_ICONS[idx % PROJECT_ICONS.length];
         const tagsHtml = proj.tags.map(t =>
-            `<span class="text-sm bg-orange-900 text-orange-200 px-3 py-1 rounded-full">${escHtml(t)}</span>`
+            `<span class="text-sm bg-purple-100 text-purple-900 px-3 py-1 rounded-full">${escHtml(t)}</span>`
         ).join('');
 
         const card = document.createElement('div');
-        card.className = 'project-card bg-gray-700 rounded-lg overflow-hidden border border-gray-600 shadow-xl';
+        card.className = 'project-card bg-white rounded-lg overflow-hidden border border-gray-200 shadow-xl';
         card.innerHTML = `
             <div class="bg-gradient-to-br ${escHtml(proj.gradient)} h-48 flex items-center justify-center">
                 <svg class="w-24 h-24 text-white opacity-50" fill="currentColor" viewBox="0 0 20 20">
@@ -121,10 +121,10 @@ function renderProjects(projects) {
                 </svg>
             </div>
             <div class="p-6">
-                <h3 class="text-xl font-bold text-white mb-2">${escHtml(proj.title)}</h3>
-                <p class="text-gray-400 mb-4">${escHtml(proj.description)}</p>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">${escHtml(proj.title)}</h3>
+                <p class="text-gray-600 mb-4">${escHtml(proj.description)}</p>
                 <div class="flex flex-wrap gap-2 mb-4">${tagsHtml}</div>
-                <a href="${escHtml(proj.link)}" class="inline-block text-orange-400 font-semibold hover:text-orange-300 transition">더 보기 →</a>
+                <a href="${escHtml(proj.link)}" class="inline-block text-purple-500 font-semibold hover:text-purple-600 transition">더 보기 →</a>
             </div>`;
         grid.appendChild(card);
     });
