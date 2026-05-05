@@ -6,7 +6,9 @@
       "Bash(git push *)",
       "Bash(git rm *)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(findstr 8000)",
+      "Bash(git commit -m 'Update CLAUDE.md after removing edit mode *)"
     ]
   }
 }
