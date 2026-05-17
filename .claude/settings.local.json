@@ -8,7 +8,9 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(findstr 8000)",
-      "Bash(git commit -m 'Update CLAUDE.md after removing edit mode *)"
+      "Bash(git commit -m 'Update CLAUDE.md after removing edit mode *)",
+      "Bash(git commit -m 'Contact 섹션 카드 크기 확대 *)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\kmk14\\\\workspace\\\\my-profile-site\" | Where-Object { $_.Name -eq \"img\" })"
     ]
   }
 }
